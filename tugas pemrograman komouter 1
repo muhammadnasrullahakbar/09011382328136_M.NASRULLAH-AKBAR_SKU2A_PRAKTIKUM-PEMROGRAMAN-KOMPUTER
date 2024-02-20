@@ -1,0 +1,55 @@
+import java.awt.Color;
+
+public class tugaslibraryjava {
+    public static void main(String[] args) {
+        
+        // Membuat objek Color dengan warna RGB
+        Color warnamerah = new Color(255, 0, 0);
+        Color warnahijau = new Color(0, 255, 0);
+        Color warnabiru = new Color(0, 0, 255);
+
+        // input Menampilkan komponen warna dari objek Color
+        System.out.println("Red: " + warnamerah.getRed());
+        System.out.println("Green: " + warnahijau.getGreen());
+        System.out.println("Blue: " + warnabiru.getBlue());
+
+        // input Membuat objek Color dengan kode warna hex
+        Color warnamaroon = new Color(139, 58, 58);
+        Color warnacyan = new Color(0, 255, 255);
+
+        // input Menampilkan nilai RGB dari objek Color
+        System.out.println("Maroon RGB: " + warnamaroon.getRGB());
+        System.out.println("Cyan RGB: " + warnacyan.getRGB());
+
+        // input Menggabungkan warna dengan menghitung rata-rata RGB
+        int campurmerah = (warnamerah.getRed() + warnahijau.getRed() + warnabiru.getRed()) / 3;
+        int campurhijau = (warnamerah.getGreen() + warnahijau.getGreen() + warnabiru.getGreen()) / 3;
+        int campurbiru = (warnamerah.getBlue() + warnahijau.getBlue() + warnabiru.getBlue()) / 3;
+         Color campurwarna = new Color(campurmerah, campurhijau, campurbiru);
+        System.out.println("campur warna RGB: " + campurwarna.getRGB());
+    }
+}
+
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class tugaslibraryjava2 {
+    public static void main(String[] args) {
+        String text = "guys tu lihat ada superman";
+
+        // inputan menDefinisikan pola yang ingin dicocokkan
+        String polakata = "superman";
+
+        // input untuk memBuat objek Pattern dengan pola yang telah ditentukan
+        Pattern pattern = Pattern.compile(polakata);
+
+        // input untuk memBuat objek Matcher
+        Matcher matcher = pattern.matcher(text);
+
+        // Lakukan pencocokkan
+        while (matcher.find()) {
+            System.out.println("Pola \"" + polakata + "\" ditemukan pada indeks: " + matcher.start());
+        }
+    }
+}
