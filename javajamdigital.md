@@ -1,3 +1,6 @@
+
+**jam digital**
+
 import javax.swing.*;
 import java.awt.*;
 import java.text.SimpleDateFormat;
@@ -68,3 +71,79 @@ public class jamdigital extends JFrame {
         new jamdigital();
     }
 } 
+
+
+**bayaran bil listrik**
+
+import java.util.Scanner;
+
+class Pelanggan {
+    private String nama;
+    private int idPelanggan;
+    private MeteranListrik meteran;
+
+    public Pelanggan(String nama, int idPelanggan) {
+        this.nama = nama;
+        this.idPelanggan = idPelanggan;
+        this.meteran = new MeteranListrik();
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public int getIdPelanggan() {
+        return idPelanggan;
+    }
+
+    public MeteranListrik getMeteran() {
+        return meteran;
+    }
+}
+
+class MeteranListrik {
+    private double pembacaanSaatIni;
+    private double pembacaanSebelumnya;
+    private double tarifPerUnit = 0.10; // tarif per unit dalam dollar
+
+    public void setPembacaanSaatIni(double pembacaanSaatIni) {
+        this.pembacaanSaatIni = pembacaanSaatIni;
+    }
+
+    public void setPembacaanSebelumnya(double pembacaanSebelumnya) {
+        this.pembacaanSebelumnya = pembacaanSebelumnya;
+    }
+
+    public double hitungTagihan() {
+        return (pembacaanSaatIni - pembacaanSebelumnya) * tarifPerUnit;
+    }
+}
+
+public class SistemTagihanListrik {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Masukkan nama pelanggan: ");
+        String nama = scanner.nextLine();
+        System.out.print("Masukkan ID pelanggan: ");
+        int idPelanggan = scanner.nextInt();
+
+        Pelanggan pelanggan = new Pelanggan(nama, idPelanggan);
+
+        System.out.print("Masukkan pembacaan meteran sebelumnya: ");
+        double pembacaanSebelumnya = scanner.nextDouble();
+        pelanggan.getMeteran().setPembacaanSebelumnya(pembacaanSebelumnya);
+
+        System.out.print("Masukkan pembacaan meteran saat ini: ");
+        double pembacaanSaatIni = scanner.nextDouble();
+        pelanggan.getMeteran().setPembacaanSaatIni(pembacaanSaatIni);
+
+        double jumlahTagihan = pelanggan.getMeteran().hitungTagihan();
+
+        System.out.println("Pelanggan: " + pelanggan.getNama());
+        System.out.println("ID Pelanggan: " + pelanggan.getIdPelanggan());
+        System.out.println("Jumlah Tagihan: $" + jumlahTagihan);
+
+        scanner.close();
+    }
+}
